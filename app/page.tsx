@@ -7,6 +7,7 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import PricingSection from "@/components/landing/PricingSection";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/landing/Footer";
+import WhatToAsk from "@/components/landing/WhatToAsk";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
     <Header />
     <Hero />
     <HowItWorks />
+    <WhatToAsk />
     <PricingSection />
     <CTA />
     <Footer />
