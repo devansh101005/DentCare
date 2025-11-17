@@ -10,6 +10,7 @@ import {
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import UserSync from '@/components/UserSync';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,8 @@ appearance={{
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark `}
       >
+        {/* This is done in home page component */}
+        {/* <UserSync /> */}
         {children}
       </body>
     </html>
