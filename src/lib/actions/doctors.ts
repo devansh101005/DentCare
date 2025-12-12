@@ -16,7 +16,7 @@ export async function getDoctors() {
       orderBy: { createdAt: "desc" },
     });
 
-    return doctors.map((doctor: typeof doctors[number]) => ({
+    return doctors.map((doctor) => ({
       ...doctor,
       appointmentCount: doctor._count.appointments,
     }));
