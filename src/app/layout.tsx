@@ -12,6 +12,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import UserSync from '@/components/UserSync';
 import TanStackProvider from '@/components/providers/TanStackProviders';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,7 @@ appearance={{
       >
         {/* This is done in home page component */}
         {/* <UserSync /> */}
+        <Toaster />
         {children}
       </body>
     </html>
