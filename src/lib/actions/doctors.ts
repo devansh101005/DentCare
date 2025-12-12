@@ -2,13 +2,15 @@
 
 import { prisma } from "../prisma";
 import {Gender} from "@prisma/client"
+import { generateAvatar } from "../utils";
+import { revalidatePath } from "next/cache";
 
 export async function getDoctors() {
   try {
     const doctors = await prisma.doctor.findMany({
       include: {
         _count: {
-          select: { appointment: true },
+          select: { appointments: true },
         },
       },
       orderBy: { createdAt: "desc" },
@@ -16,7 +18,7 @@ export async function getDoctors() {
 
     return doctors.map((doctor: typeof doctors[number]) => ({
       ...doctor,
-      appointmentCount: doctor._count.appointment,
+      appointmentCount: doctor._count.appointments,
     }));
   } catch (error) {
     console.log("Error Fetching Doctors:", error);
