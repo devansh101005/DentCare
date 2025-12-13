@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DentWise-AI powered Dental Assistant",
+  title: "DentCare-AI powered Dental Assistant",
   description: "Get Intnt Dental Advice through voice calls with our AI assistant. Avaialbale 24/7",
 };
 
