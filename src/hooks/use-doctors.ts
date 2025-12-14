@@ -2,14 +2,21 @@
 
 import { createDoctor, getAvailableDoctors, getDoctors, updateDoctor } from "@/lib/actions/doctors";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { AdminDoctor } from "@/types/admin";
+
 
 export function useGetDoctors() {
-  const result = useQuery({
-    queryKey: ["getDoctors"],
+//   const result = useQuery({
+//     queryKey: ["getDoctors"],
+//     queryFn: getDoctors,
+//   });
+
+//   return result;
+// }
+return useQuery<AdminDoctor[]>({
+    queryKey: ["doctors"],
     queryFn: getDoctors,
   });
-
-  return result;
 }
 
 export function useCreateDoctor() {

@@ -8,15 +8,25 @@ import {
   updateAppointmentStatus,
 } from "@/lib/actions/appointments";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { AdminAppointment } from "@/types/admin";
 
+
+
+//changed hook to solve type error
 export function useGetAppointments() {
-  const result = useQuery({
-    queryKey: ["getAppointments"],
+//   const result = useQuery({
+//     queryKey: ["getAppointments"],
+//     queryFn: getAppointments,
+//   });
+
+//   return result;
+// }
+return useQuery<AdminAppointment[]>({
+    queryKey: ["appointments"],
     queryFn: getAppointments,
   });
-
-  return result;
 }
+
 
 export function useBookedTimeSlots(doctorId: string, date: string) {
   return useQuery({

@@ -8,6 +8,7 @@ import { useGetAppointments } from "@/hooks/use-appointments";
 import { useGetDoctors } from "@/hooks/use-doctors";
 import { useUser } from "@clerk/nextjs";
 import { SettingsIcon } from "lucide-react";
+//import { AdminDoctor } from "@/types/admin";
 
 function AdminDashboardClient() {
   const { user } = useUser();

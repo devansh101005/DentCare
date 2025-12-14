@@ -1,4 +1,4 @@
-import { useGetAppointments, useUpdateAppointmentStatus } from "@/hooks/use-appointment";
+import { useGetAppointments,useUpdateAppointmentStatus } from "@/hooks/use-appointments";
 import { Badge } from "../ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Calendar } from "lucide-react";
