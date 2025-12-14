@@ -12,7 +12,9 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import pkg from "pg";
-const { Pool } = pkg;
+import pg from "pg"
+const { Pool } = pg;
+//import {Pool} from "pg";
 
 
 const globalForPrisma = globalThis as any;

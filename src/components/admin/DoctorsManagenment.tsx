@@ -8,15 +8,16 @@ import { Badge } from "../ui/badge";
 import AddDoctorDialog from "./AddDoctorDialog";
 import EditDoctorDialog from "./EditDoctorDialog";
 import { Doctor } from "@prisma/client";
+import { AdminDoctor } from "@/types/admin";
 
 function DoctorsManagement() {
   const { data: doctors = [] } = useGetDoctors();
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
+  const [selectedDoctor, setSelectedDoctor] = useState<AdminDoctor | null>(null);
 
-  const handleEditDoctor = (doctor: Doctor) => {
+  const handleEditDoctor = (doctor: AdminDoctor) => {
     setSelectedDoctor(doctor);
     setIsEditDialogOpen(true);
   };

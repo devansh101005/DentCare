@@ -1,10 +1,16 @@
 export interface AdminDoctor {
   id: string;
   name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  email: string;
+  phone: string;
   speciality: string;
+  bio: string ;
+  imageUrl: string;
+  gender: "MALE" | "FEMALE";
   isActive: boolean;
-  doctorImageUrl?: string;
-  createdAt: string;
+  appointmentCount: number;
 }
 
 export interface AdminAppointment {
