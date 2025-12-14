@@ -4,7 +4,6 @@ import { AppointmentConfirmationModal } from "@/components/appointments/Appointm
 import BookingConfirmationStep from "@/components/appointments/BookingConfirmationStep";
 import DoctorSelectionStep from "@/components/appointments/DoctorSelectionStep";
 import ProgressSteps from "@/components/appointments/ProgressSteps";
-//import ProgressSteps from "@/components/appointments/ProgressSteps";
 import TimeSelectionStep from "@/components/appointments/TimeSelectionStep";
 import Navbar from "@/components/Navbar";
 import { useBookAppointment,useUserAppointments } from "@/hooks/use-appointments";
