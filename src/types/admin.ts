@@ -11,8 +11,29 @@ export interface AdminAppointment {
   id: string;
   doctorId: string;
   userId: string;
-  status: "PENDING" | "CONFIRMED" | "COMPLETED" | "CANCELED";
-  date: string;
+
   doctorName: string;
   doctorImageUrl: string;
+
+  date: string;
+  time: string;  
+  reason: string; 
+
+  patientName: string;  
+  patientEmail: string;    
+
+  status: "PENDING" | "CONFIRMED" | "COMPLETED" | "CANCELED";
 }
+
+
+export interface AvailableDoctor {
+  id: string;
+  name: string;
+  speciality: string;
+  imageUrl?: string;
+  appointmentCount: number;  
+  phone: string;        
+  bio?: string; 
+}
+
+

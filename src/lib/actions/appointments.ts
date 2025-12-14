@@ -2,9 +2,18 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "../prisma";
-import { AppointmentStatus } from "@prisma/client";
+import { AppointmentStatus,Appointment,User,Doctor,Prisma } from "@prisma/client";
+import { UserAppointment } from "@/types/appointments";
 
-function transformAppointment(appointment: any) {
+
+type AppointmentWithRelations = Prisma.AppointmentGetPayload<{
+  include: {
+    user: { select: { firstName: true; lastName: true; email: true } };
+    doctor: { select: { name: true; imageUrl: true } };
+  };
+}>;
+
+function transformAppointment(appointment: AppointmentWithRelations):UserAppointment {
   return {
     ...appointment,
     patientName: `${appointment.user.firstName || ""} ${appointment.user.lastName || ""}`.trim(),
@@ -12,6 +21,10 @@ function transformAppointment(appointment: any) {
     doctorName: appointment.doctor.name,
     doctorImageUrl: appointment.doctor.imageUrl || "",
     date: appointment.date.toISOString().split("T")[0],
+    id:appointment.id,
+    time:appointment.time,
+    status:appointment.status,
+    reason:appointment.reason,
   };
 }
 
@@ -38,7 +51,7 @@ export async function getAppointments() {
   }
 }
 
-export async function getUserAppointments() {
+export async function getUserAppointments(): Promise<UserAppointment[]> {
   try {
     // get authenticated user from Clerk
     const { userId } = await auth();
@@ -109,7 +122,7 @@ export async function getBookedTimeSlots(doctorId: string, date: string) {
       select: { time: true },
     });
 
-    return appointments.map((appointment) => appointment.time);
+    return appointments.map((appointment:{time:string}) => appointment.time);
   } catch (error) {
     console.error("Error fetching booked time slots:", error);
     return []; // return empty array if there's an error
