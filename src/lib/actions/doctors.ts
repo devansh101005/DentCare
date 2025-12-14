@@ -2,8 +2,18 @@
 
 import {Gender} from "@prisma/client"
 import { prisma } from "../prisma";
+import { Prisma } from "@prisma/client";
 import { generateAvatar } from "../utils";
 import { revalidatePath } from "next/cache";
+
+
+type DoctorWithCount = Prisma.DoctorGetPayload<{
+  include: {
+    _count: {
+      select: { appointments: true };
+    };
+  };
+}>;
 
 export async function getDoctors() {
   try {
@@ -16,7 +26,7 @@ export async function getDoctors() {
       orderBy: { createdAt: "desc" },
     });
 
-    return doctors.map((doctor) => ({
+    return doctors.map((doctor:DoctorWithCount) => ({
       ...doctor,
       appointmentCount: doctor._count.appointments,
     }));
@@ -120,7 +130,7 @@ export async function getAvailableDoctors() {
       orderBy: { name: "asc" },
     });
 
-    return doctors.map((doctor) => ({
+    return doctors.map((doctor:DoctorWithCount) => ({
       ...doctor,
       appointmentCount: doctor._count.appointments,
     }));
