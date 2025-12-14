@@ -4,9 +4,10 @@ import { AppointmentConfirmationModal } from "@/components/appointments/Appointm
 import BookingConfirmationStep from "@/components/appointments/BookingConfirmationStep";
 import DoctorSelectionStep from "@/components/appointments/DoctorSelectionStep";
 import ProgressSteps from "@/components/appointments/ProgressSteps";
+//import ProgressSteps from "@/components/appointments/ProgressSteps";
 import TimeSelectionStep from "@/components/appointments/TimeSelectionStep";
 import Navbar from "@/components/Navbar";
-import { useBookAppointment, useUserAppointments } from "@/hooks/use-appointment";
+import { useBookAppointment,useUserAppointments } from "@/hooks/use-appointments";
 import { APPOINTMENT_TYPES } from "@/lib/utils";
 import { format } from "date-fns";
 import { useState } from "react";
@@ -23,8 +24,15 @@ function AppointmentsPage() {
   const [bookedAppointment, setBookedAppointment] = useState<any>(null);
 
   const bookAppointmentMutation = useBookAppointment();
-  const { data: userAppointments = [] } = useUserAppointments();
 
+  //Fixed return type any wala error from using this 
+  //const { data: userAppointments = [] } = useUserAppointments();
+  const { data: userAppointments = [] } = useUserAppointments() as {
+  data: UserAppointment[]
+   };
+
+
+  
   const handleSelectDentist = (dentistId: string) => {
     setSelectedDentistId(dentistId);
 
@@ -90,6 +98,20 @@ function AppointmentsPage() {
       }
     );
   };
+
+  interface UserAppointment {
+  id: string;
+  doctorImageUrl: string;
+  doctorName: string;
+  date: string;
+  time: string | null;
+  reason:string;
+
+  //We can add more fields if needed
+}
+
+
+
 
   return (
     <>
